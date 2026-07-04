@@ -50,15 +50,43 @@ void push(Stack* stack, int value){
         ++(stack->size);
         return;
     }
-
+    new_node->next = stack->top;
     stack->top = new_node;
+    
+    ++(stack->size);
+}
+
+void pop(Stack* stack){
+    if (stack->top == nullptr){
+        std::cout << "pop(): Stack is empty\n";
+        return;
+    }
+
+    Node* temp = stack->top;
+    stack->top = stack->top->next;
+
+    --(stack->size);
+    delete temp;
 }
 
 void peek(Stack* stack){
-    if(stack->top == nullptr){
+    if (stack->top == nullptr){
         std::cout << "nullptr\n";
 
     } else {
         std::cout << stack->top->value << '\n';
     }
+}
+
+bool is_empty(Stack* stack){
+    if (stack->top == nullptr){
+        return true;
+
+    } else {
+        return false;
+    }
+}
+
+std::size_t stack_size(Stack* stack){
+    return stack->size;
 }
