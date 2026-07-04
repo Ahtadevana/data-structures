@@ -8,14 +8,20 @@ int main(){
     Stack* main_stack{ &stack };
 
     init_stack(main_stack);
-    push(main_stack, 10);
-    push(main_stack, 20);
-    push(main_stack, 30);
-    pop(main_stack);
-    pop(main_stack);
-    pop(main_stack);
+    peek_all(main_stack);
 
-    peek(main_stack);
+    push(main_stack, 10);
+    peek_all(main_stack);
+
+    push(main_stack, 20);
+    peek_all(main_stack);
+
+    push(main_stack, 30);
+    peek_all(main_stack);
+
+    pop(main_stack);
+    peek_all(main_stack);
+
     LOG( is_empty(main_stack) );
 
     return 0;

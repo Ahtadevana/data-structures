@@ -78,6 +78,17 @@ void peek(Stack* stack){
     }
 }
 
+void peek_all(Stack* stack){
+    Node* curr = stack->top;
+
+    while(curr != nullptr){
+        std::cout << curr->value << " <- ";
+        curr = curr->next;
+    }
+
+    std::cout << "nullptr\n";
+}
+
 bool is_empty(Stack* stack){
     if (stack->top == nullptr){
         return true;
