@@ -11,16 +11,11 @@ int main(){
     peek_all(main_stack);
 
     push(main_stack, 10);
-    peek_all(main_stack);
-
     push(main_stack, 20);
-    peek_all(main_stack);
-
     push(main_stack, 30);
-    peek_all(main_stack);
 
-    pop(main_stack);
     peek_all(main_stack);
+    pop_all(main_stack);
 
     LOG( is_empty(main_stack) );
 

@@ -69,6 +69,24 @@ void pop(Stack* stack){
     delete temp;
 }
 
+void pop_all(Stack* stack){
+    if (stack->top == nullptr){
+        std::cout << "pop_all(): Stack is empty\n";
+        return;
+    }
+    Node* curr = stack->top;
+
+    while(curr != nullptr){
+        Node* temp = curr;
+        curr = curr->next;
+
+        delete temp;
+    }
+
+    stack->top = nullptr;
+    stack->size = 0;
+}
+
 void peek(Stack* stack){
     if (stack->top == nullptr){
         std::cout << "nullptr\n";
