@@ -57,7 +57,7 @@ void dequeue(Queue* queue){
         std::cout << "dequeue(): Queue is empty\n";
         return;
     }
-    Node* temp = queue->front;
+    Node* temp{ queue->front };
     queue->front = queue->front->next;
     --(queue->size);
 
