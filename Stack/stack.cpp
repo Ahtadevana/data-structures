@@ -62,7 +62,7 @@ void pop(Stack* stack){
         return;
     }
 
-    Node* temp = stack->top;
+    Node* temp{ stack->top };
     stack->top = stack->top->next;
 
     --(stack->size);
@@ -74,10 +74,10 @@ void pop_all(Stack* stack){
         std::cout << "pop_all(): Stack is empty\n";
         return;
     }
-    Node* curr = stack->top;
+    Node* curr{ stack->top };
 
     while(curr != nullptr){
-        Node* temp = curr;
+        Node* temp{ curr };
         curr = curr->next;
 
         delete temp;
@@ -97,7 +97,7 @@ void peek(Stack* stack){
 }
 
 void peek_all(Stack* stack){
-    Node* curr = stack->top;
+    Node* curr{ stack->top };
 
     while(curr != nullptr){
         std::cout << curr->value << " <- ";
