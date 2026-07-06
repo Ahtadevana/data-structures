@@ -8,19 +8,17 @@ struct Node {
 };
 
 struct LinkedList {
-    Node* head;
+    Node* base;
     std::size_t size;
 };
 
-Node* allocate(int value);
-void deallocate(int value);
+Node* create_node(int value);
 
-void link_node(Node* first, Node* second);
-void unlink_node(Node* first, Node* second);
+LinkedList* init_list();
+
+void insert_at_head(LinkedList* list, Node* head, int value);
+void destroy_list(LinkedList* list, Node* head);
 
 void print_list(Node* head);
 
-bool search_value(Node* head, int value);
-Node* get_node_ptr(Node* head, int value);
-
-void destroy_list(Node* head);
+void view_metadata(LinkedList* list, Node* head);
