@@ -5,10 +5,15 @@
 /*
 Node* create_node(int value);
 
-void init_list(LinkedList* list);
+Node* init_head();
+LinkedList* init_list();
 
-void insert_at_head(LinkedList* list, Node* head, int value);
-void destroy_list(LinkedList* list, Node* head);
+void insert_at_head(LinkedList* list, Node*& head, int value);
+void insert_at_tail(LinkedList* list, Node*& head, int value);
+
+void delete_at_head(LinkedList* list, Node*& head);
+void delete_at_tail(LinkedList* list, Node*& head);
+void destroy_list(LinkedList* list, Node*& head);
 
 void print_list(Node* head);
 
@@ -33,23 +38,89 @@ LinkedList* init_list(){
     return list;
 }
 
-void insert_at_head(LinkedList* list, Node** head, int value){
+void insert_at_head(LinkedList* list, Node*& head, int value){
     Node* new_node{ create_node(value) };
 
-    new_node->next = *head;
-    *head = new_node;
+    new_node->next = head;
+    head = new_node;
 
     list->base = new_node;
     ++(list->size);
 }
 
-void destroy_list(LinkedList* list, Node** head){
-    if(*head == nullptr){
+void insert_at_tail(LinkedList* list, Node*& head, int value){
+    Node* new_node{ create_node(value) };
+
+    if(head == nullptr){
+        head = new_node;
+
+        list->base = new_node;
+        ++(list->size);
+        return;
+    }
+    
+    Node* curr{ head };
+    while(curr->next != nullptr){
+        curr = curr->next;
+    }
+
+    curr->next = new_node;
+    ++(list->size);
+}
+
+void delete_at_head(LinkedList* list, Node*& head){
+    if(head == nullptr){
+        std::cout << "delete_at_head(): List is empty\n";
+        return;
+    }
+
+    Node* temp{ head };
+    list->base = head->next;
+    head = head->next;
+    --(list->size);
+
+    delete temp;
+}
+
+
+void delete_at_tail(LinkedList* list, Node*& head){
+    if(head == nullptr){
+        std::cout << "delete_at_tail(): List is empty\n";
+        return;
+    }
+
+    if(head->next == nullptr){
+        list->base = head->next;
+        list->size = 0;
+
+        Node* temp{ head };
+        head = head->next;
+
+        delete temp;
+        return;
+    }
+
+    Node* curr{ head };
+    while(curr->next->next != nullptr){
+        curr = curr->next;
+    }
+
+    Node* temp{ curr };
+    temp = temp->next;
+    --(list->size);
+
+    delete temp;
+
+    curr->next = nullptr;
+}
+
+void destroy_list(LinkedList* list, Node*& head){
+    if(head == nullptr){
         std::cout << "destroy_list(): List is empty\n";
         return;
     }
 
-    Node* curr{ *head };
+    Node* curr{ head };
     while(curr->next != nullptr){
         Node* temp = curr;
         curr = curr->next;
@@ -57,7 +128,7 @@ void destroy_list(LinkedList* list, Node** head){
         delete temp;
     }
 
-    *head = nullptr;
+    head = nullptr;
     list->base = nullptr;
     list->size = 0;
 }
@@ -81,7 +152,9 @@ void view_metadata(LinkedList* list, Node* head){
         << "Size: " << list->size << '\n';
 
     if(head == nullptr){
-        std::cout << "Head: " << nullptr << '\n';
+        std::cout 
+            << "Head: " << nullptr << '\n'
+            << "==========\n";
         return;
     }
 
