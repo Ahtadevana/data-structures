@@ -14,10 +14,11 @@ struct LinkedList {
 
 Node* create_node(int value);
 
+Node* init_head();
 LinkedList* init_list();
 
-void insert_at_head(LinkedList* list, Node* head, int value);
-void destroy_list(LinkedList* list, Node* head);
+void insert_at_head(LinkedList* list, Node** head, int value);
+void destroy_list(LinkedList* list, Node** head);
 
 void print_list(Node* head);
 

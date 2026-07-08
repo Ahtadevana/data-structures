@@ -25,7 +25,7 @@ Node* create_node(int value){
 }
 
 LinkedList* init_list(){
-    LinkedList* list{};
+    LinkedList* list{ new LinkedList };
 
     list->base = nullptr;
     list->size = 0;
@@ -33,27 +33,60 @@ LinkedList* init_list(){
     return list;
 }
 
-void insert_at_head(LinkedList* list, Node* head, int value){
+void insert_at_head(LinkedList* list, Node** head, int value){
     Node* new_node{ create_node(value) };
 
-    if(list->size == 0){
-        
-    }
-
-    new_node->next = head;
-    head = new_node;
+    new_node->next = *head;
+    *head = new_node;
 
     list->base = new_node;
     ++(list->size);
+}
+
+void destroy_list(LinkedList* list, Node** head){
+    if(*head == nullptr){
+        std::cout << "destroy_list(): List is empty\n";
+        return;
+    }
+
+    Node* curr{ *head };
+    while(curr->next != nullptr){
+        Node* temp = curr;
+        curr = curr->next;
+
+        delete temp;
+    }
+
+    *head = nullptr;
+    list->base = nullptr;
+    list->size = 0;
 }
 
 void print_list(Node* head){
     Node* curr{ head };
 
     while(curr != nullptr){
-        std::cout << curr->value << " <- ";
+        std::cout << curr->value << " -> ";
         curr = curr->next;
     }
 
     std::cout << "nullptr\n";
+}
+
+void view_metadata(LinkedList* list, Node* head){
+
+    std::cout 
+        << "==========" << '\n'
+        << "Head addr: " << list->base << '\n'
+        << "Size: " << list->size << '\n';
+
+    if(head == nullptr){
+        std::cout << "Head: " << nullptr << '\n';
+        return;
+    }
+
+    std::cout
+        << "Next of head: " << head->next << '\n' 
+        << "Head value: " << head->value << '\n'
+        << "==========" << '\n';
 }
