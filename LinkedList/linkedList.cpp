@@ -17,7 +17,7 @@ void destroy_list(LinkedList* list, Node*& head);
 
 void print_list(Node* head);
 bool search_node_value(Node* head, int key);
-bool search_node_index(Node* head, int index);
+Node* search_node_index(LinkedList* list, Node* head, std::size_t index);
 
 void view_metadata(LinkedList* list, Node* head);
 */
@@ -116,7 +116,7 @@ void delete_at_tail(LinkedList* list, Node*& head){
     curr->next = nullptr;
 }
 
-void destroy_list(LinkedList* list, Node*& head){
+void destroy_list(LinkedList*& list, Node*& head){
     if(head == nullptr){
         std::cout << "destroy_list(): List is empty\n";
         return;
@@ -129,10 +129,10 @@ void destroy_list(LinkedList* list, Node*& head){
 
         delete temp;
     }
-
     head = nullptr;
-    list->base = nullptr;
-    list->size = 0;
+
+    delete list;
+    list = nullptr;
 }
 
 void print_list(Node* head){

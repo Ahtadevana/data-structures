@@ -22,7 +22,7 @@ void insert_at_tail(LinkedList* list, Node*& head, int value);
 
 void delete_at_head(LinkedList* list, Node*& head);
 void delete_at_tail(LinkedList* list, Node*& head);
-void destroy_list(LinkedList* list, Node*& head);
+void destroy_list(LinkedList*& list, Node*& head);
 
 void print_list(Node* head);
 bool search_node_value(Node* head, int key);
