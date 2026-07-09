@@ -1,7 +1,8 @@
 #include "linkedList.hpp"
 
 #include <iostream>
-// #define LOG(X) std::cout << X << '\n';   //ignore this hehe :3c
+#define LOG(X) std::cout << X << '\n'
+//ignore this hehe :3c
 
 int main(){
     Node* head{ nullptr };
@@ -9,12 +10,8 @@ int main(){
     insert_at_head(main_list, head, 10);
     insert_at_head(main_list, head, 0);
     insert_at_tail(main_list, head, 20);
-    print_list(head);
 
-    delete_at_tail(main_list, head);
-    delete_at_tail(main_list, head);
-
-    print_list(head);
-    view_metadata(main_list, head);
+    Node* new_node{ search_node_index(main_list, head, 999) };
+    LOG(new_node);
     return 0;
 }

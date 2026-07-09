@@ -16,6 +16,8 @@ void delete_at_tail(LinkedList* list, Node*& head);
 void destroy_list(LinkedList* list, Node*& head);
 
 void print_list(Node* head);
+bool search_node_value(Node* head, int key);
+bool search_node_index(Node* head, int index);
 
 void view_metadata(LinkedList* list, Node* head);
 */
@@ -142,6 +144,39 @@ void print_list(Node* head){
     }
 
     std::cout << "nullptr\n";
+}
+
+bool search_node_value(Node* head, int key){
+    // std::size_t index{};
+
+    Node* curr{ head };
+    while (curr != nullptr){
+        if (curr->value == key){
+            // std::cout << "Found at index: " << index << '\n';
+            return true;
+        }
+        curr = curr->next;
+        // ++index;
+    }
+
+    // std::cout << "search_node_value(): Node not found\n";
+    return false;
+}
+
+Node* search_node_index(LinkedList* list, Node* head, std::size_t index){
+    if(index > list->size - 1){
+        std::cout << "search_node_index(): Out of bounds\n";
+        return nullptr;
+    }
+
+    Node* curr{ head };
+    std::size_t it{ 0 };
+    while(it < index && curr != nullptr){
+        ++it;
+        curr = curr->next;
+    }
+
+    return curr;
 }
 
 void view_metadata(LinkedList* list, Node* head){
