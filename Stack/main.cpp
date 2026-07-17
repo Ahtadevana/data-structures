@@ -1,6 +1,5 @@
 #include "stack.hpp"
 
-#include <iostream>
 #define LOG(x) std::cout << x << '\n';
 
 int main(){
@@ -16,8 +15,6 @@ int main(){
 
     peek_all(main_stack);
     pop_all(main_stack);
-
-    LOG( is_empty(main_stack) );
 
     return 0;
 }

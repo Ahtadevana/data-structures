@@ -1,6 +1,6 @@
 #pragma once
 
-#include <iostream>
+#include <cstddef>
 
 struct Node {
     Node* next;
