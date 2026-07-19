@@ -11,10 +11,7 @@ Stack::Node* Stack::create_node(int data){
   return new_node;
 }
 
-Stack::Stack(){
-  top_ = nullptr;
-  size_ = 0 ;
-}
+Stack::Stack() : top_(nullptr), size_(0){}
 
 Stack::~Stack(){
   if( is_empty() )
@@ -57,7 +54,7 @@ void Stack::pop(){
   --(size_);
 }
 
-void Stack::peek(){
+void Stack::peek() const {
   if( is_empty() ){
     std::cout << "nullptr\n";
     return;
@@ -65,7 +62,7 @@ void Stack::peek(){
   std::cout << top_->data <<'\n';
 }
 
-void Stack::print(){
+void Stack::print() const {
   if( is_empty() ){
     std::cout << "nullptr\n";
     return;
@@ -79,25 +76,16 @@ void Stack::print(){
 }
 
 [[nodiscard]]
-std::size_t Stack::size(){
+std::size_t Stack::size() const {
   return size_;
 }
 
 [[nodiscard]]
-bool Stack::is_empty(){
-  if (top_ == nullptr){
-    return true;
-  } else {
-    return false;
-  }
+bool Stack::is_empty() const {
+  return size_ == 0;
 }
 
 [[nodiscard]]
-Stack::Node* Stack::get_top(){
+Stack::Node* Stack::get_top() const{
   return top_;
-}
-
-[[nodiscard]]
-std::size_t Stack::get_size(){
-  return size_;
 }

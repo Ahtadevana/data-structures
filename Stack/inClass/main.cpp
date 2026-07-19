@@ -13,7 +13,6 @@ int main(){
 
   mainStack.pop();
   mainStack.peek();
-
   mainStack.print();
 
   LOG( mainStack.size() );

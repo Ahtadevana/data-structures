@@ -16,13 +16,14 @@ class Stack {
   public:
     Stack();
     ~Stack();
+
     void push(int data);
     void pop();
-    void peek();
-    void print();
-    std::size_t size();
-    bool is_empty();
 
-    Node* get_top();
-    std::size_t get_size();
+    void peek() const;
+    void print() const;
+    std::size_t size() const;
+    bool is_empty() const;
+
+    Node* get_top() const;
 };
